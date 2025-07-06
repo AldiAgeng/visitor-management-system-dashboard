@@ -27,7 +27,6 @@
             "assets": ["src/favicon.ico", "src/assets", "src/fake-data"],
             "styles": ["node_modules/bootstrap/scss/bootstrap.scss", "src/styles.scss"],
             "scripts": ["node_modules/apexcharts/dist/apexcharts.min.js"],
-            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -64,6 +63,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "your-application-name:build",
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "datta-able-free-angular-admin-template:build:production"
