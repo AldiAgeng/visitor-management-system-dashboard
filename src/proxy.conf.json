@@ -1,6 +1,0 @@
-{
-  "/api": {
-    "target": "https://aldiageng.xyz/api/v1",
-    "secure": false
-  }
-}

@@ -28,9 +28,6 @@ export class AuthSigninComponent {
     username: this.username,
     password: this.password,
   },
-  {
-    withCredentials: true
-  }
 ).subscribe({
     next: (res) => {
       this.auth.setToken(res.data.token);
