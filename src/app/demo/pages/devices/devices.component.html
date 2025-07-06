@@ -1,0 +1,36 @@
+<app-card cardTitle="Data Devices" [options]="false" blockClass="table-border-style">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <button class="btn btn-success btn-sm" (click)="exportToExcel()">Export Excel</button>
+    </div>
+    <div class="col-md-6 text-end">
+      <a [routerLink]="['/devices/create']" class="btn btn-primary btn-sm">Add Device</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Key</th>
+          <th>Group</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let device of devices; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ device.name }}</td>
+          <td>{{ device.device_key }}</td>
+          <td>{{ device.group_id }}</td>
+          <td>
+            <a [routerLink]="['/devices/edit', device.id]" class="btn btn-warning btn-sm me-2">Edit</a>
+            <button (click)="deleteDevice(device.id)" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-card>

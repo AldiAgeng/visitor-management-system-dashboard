@@ -1,0 +1,21 @@
+<app-card cardTitle="Tambah Device" [options]="false">
+  <form (ngSubmit)="createDevice()" #form="ngForm">
+    <div class="mb-3">
+      <label class="form-label">Nama Device</label>
+      <input type="text" class="form-control" [(ngModel)]="name" name="name" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Device Key</label>
+      <input type="text" class="form-control" [(ngModel)]="device_key" name="device_key" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Group ID</label>
+      <input type="text" class="form-control" [(ngModel)]="group_id" name="group_id" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Create</button>
+    <a routerLink="/devices" class="btn btn-secondary ms-2">Cancel</a>
+  </form>
+</app-card>

@@ -1,0 +1,42 @@
+<app-card cardTitle="Edit Visitor" [options]="false">
+  <form (ngSubmit)="updateVisitor()">
+    <div class="mb-3">
+      <label>Nama</label>
+      <input type="text" class="form-control" [(ngModel)]="name" name="name" required />
+    </div>
+
+    <div class="mb-3">
+      <label>ID Card Number</label>
+      <input type="text" class="form-control" [(ngModel)]="idcard_num" name="idcard_num" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Tipe</label>
+      <select [(ngModel)]="type" name="type" class="form-control" required>
+        <option [value]="1">Wajah</option>
+        <option [value]="2">Kartu IC</option>
+        <option [value]="3">Wajah dan Kartu</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Passtime</label>
+      <input type="text" class="form-control" [(ngModel)]="passtime" name="passtime" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Group</label>
+      <input type="text" class="form-control" [(ngModel)]="group_id" name="group" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Upload Gambar</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*" required />
+    </div>
+
+    <div class="text-end">
+      <button type="submit" class="btn btn-warning">Update</button>
+      <a [routerLink]="['/visitors']" class="btn btn-secondary ms-2">Batal</a>
+    </div>
+  </form>
+</app-card>

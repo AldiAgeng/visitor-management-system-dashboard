@@ -1,0 +1,43 @@
+<app-card cardTitle="Create Visitor" [options]="false">
+  <form (ngSubmit)="createVisitor()" #form="ngForm">
+    <div class="mb-3">
+      <label>ID Card Number</label>
+      <input type="text" [(ngModel)]="idcard_num" name="idcard_num" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="name" name="name" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="type">Tipe Verifikasi</label>
+      <select [(ngModel)]="type" name="type" class="form-control" required>
+        <option [value]="1">Wajah</option>
+        <option [value]="2">Kartu IC</option>
+        <option [value]="3">Wajah dan Kartu</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Passtime</label>
+      <input type="text" [(ngModel)]="passtime" name="passtime" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Group</label>
+      <input type="text" [(ngModel)]="group_id" name="group" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Upload Gambar</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*" required />
+    </div>
+
+
+    <div class="text-end">
+      <button type="submit" class="btn btn-success" [disabled]="form.invalid">Simpan</button>
+      <a [routerLink]="['/visitors']" class="btn btn-secondary ms-2">Batal</a>
+    </div>
+  </form>
+</app-card>

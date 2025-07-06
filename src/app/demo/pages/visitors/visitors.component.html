@@ -1,0 +1,51 @@
+<app-card cardTitle="Data Visitors" [options]="false">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <form class="row g-2 mb-3" (ngSubmit)="exportToExcel()">
+        <div class="col-md-6">
+          <input type="text" [(ngModel)]="filterName" name="filterName" class="form-control" placeholder="Nama pengunjung" />
+        </div>
+        <div class="col-md-6 d-flex align-items-end">
+          <button type="submit" class="btn btn-success w-100">Export Excel</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 text-end">
+      <a [routerLink]="['/visitors/create']" class="btn btn-primary btn-sm">Add Visitor</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>ID Card</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Passtime</th>
+          <th>Image</th>
+          <th>Group</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let visitor of visitors; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ visitor.idcard_num }}</td>
+          <td>{{ visitor.name }}</td>
+          <td>{{ visitor.type }}</td>
+          <td>{{ visitor.passtime }}</td>
+          <td>
+            <img *ngIf="visitor.img_base64" [src]="'data:image/jpeg;base64,' + visitor.img_base64" width="80" />
+          </td>
+          <td>{{ visitor.group_id }}</td>
+          <td>
+            <a [routerLink]="['/visitors/edit', visitor.id]" class="btn btn-warning btn-sm me-1">Edit</a>
+            <button (click)="deleteVisitor(visitor.id)" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-card>

@@ -1,0 +1,25 @@
+<app-card cardTitle="Edit User" [options]="false" blockClass="table-border-style">
+  <form (ngSubmit)="updateUser()">
+    <div class="form-group">
+      <label>Name</label>
+      <input [(ngModel)]="name" name="name" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label>Username</label>
+      <input [(ngModel)]="username" name="username" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label>Role</label>
+      <select [(ngModel)]="role" name="role" class="form-control" required>
+        <option value="superuser">Super User</option>
+        <option value="administrator">Administrator</option>
+        <option value="receptionist">Receptionist</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Update</button>
+    <a routerLink="/users" class="btn btn-secondary ms-2 mt-3">Cancel</a>
+  </form>
+</app-card>

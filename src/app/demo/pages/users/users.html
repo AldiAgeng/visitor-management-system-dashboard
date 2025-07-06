@@ -1,0 +1,35 @@
+<app-card cardTitle="Data Users" [options]="false" blockClass="table-border-style">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <button (click)="exportToExcel()" class="btn btn-success btn-sm">Export Excel</button>
+    </div>
+    <div class="col-md-6 text-end">
+      <a [routerLink]="['/users/create']" class="btn btn-primary btn-sm">Add User</a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <a [routerLink]="['/users/edit', user.id]" class="btn btn-warning btn-sm me-2">Edit</a>
+            <button type="button" (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-card>
