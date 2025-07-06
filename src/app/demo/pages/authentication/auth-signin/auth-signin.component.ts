@@ -26,7 +26,8 @@ export class AuthSigninComponent {
   login() {
     this.http.post<LoginResponse>(`${environment.baseUrl}/login`, {
     username: this.username,
-    password: this.password
+    password: this.password,
+    withCredentials: true
   }).subscribe({
     next: (res) => {
       this.auth.setToken(res.data.token);
