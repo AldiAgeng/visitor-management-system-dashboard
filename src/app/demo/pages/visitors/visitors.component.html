@@ -26,6 +26,7 @@
           <th>Passtime</th>
           <th>Image</th>
           <th>Group</th>
+          <th>Device Key</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -40,6 +41,7 @@
             <img *ngIf="visitor.img_base64" [src]="'data:image/jpeg;base64,' + visitor.img_base64" width="80" />
           </td>
           <td>{{ visitor.group_id }}</td>
+          <td>{{ visitor?.device?.device_key }} - {{ visitor?.device?.name }}</td>
           <td>
             <a [routerLink]="['/visitors/edit', visitor.id]" class="btn btn-warning btn-sm me-1">Edit</a>
             <button (click)="deleteVisitor(visitor.id)" class="btn btn-danger btn-sm">Delete</button>

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { environment } from 'src/environments/environment';
 import { VisitorService } from 'src/app/services/visitor/visitor.service';
+import { DeviceService } from 'src/app/services/device/device.service';
 
 @Component({
   selector: 'app-edit',
@@ -22,16 +23,20 @@ export class EditComponent implements OnInit {
   passtime: string = '';
   imageFile: File | null = null;
   group_id: string = '';
+  devices: any[] = [];
+  device_id: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private visitorService: VisitorService,
+    private deviceService: DeviceService,
   ) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
+    this.loadDevices();
     this.visitorService.getVisitor(this.id).subscribe({
       next: (res) => {
         const visitor = res.data;
@@ -40,12 +45,19 @@ export class EditComponent implements OnInit {
         this.type = visitor.type;
         this.passtime = visitor.passtime;
         this.group_id = visitor.group_id;
+        this.device_id = visitor.device_id;
       },
       error: () => {
         alert('Failed to load visitor. Please try again.');
         this.router.navigate(['/visitors']);
       }
     })
+  }
+
+  loadDevices() {
+    this.deviceService.getDevices().subscribe((res: any) => {
+      this.devices = res.data;
+    });
   }
 
   onFileSelected(event: Event): void {
@@ -63,6 +75,7 @@ export class EditComponent implements OnInit {
     formData.append('type', String(this.type));
     formData.append('passtime', this.passtime);
     formData.append('group_id', this.group_id);
+    formData.append('device_id', String(this.device_id));
 
     if (this.imageFile) {
       formData.append('img_base64', this.imageFile);
