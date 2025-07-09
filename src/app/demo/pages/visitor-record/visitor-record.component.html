@@ -1,0 +1,70 @@
+<app-card cardTitle="Data Visitor Record" [options]="false">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <form class="row g-2 mb-3" (ngSubmit)="search()">
+        <div class="col-md-6">
+          <input
+            type="text"
+            [(ngModel)]="deviceKey"
+            name="deviceKey"
+            class="form-control"
+            placeholder="Device Key"
+          />
+        </div>
+        <div class="col-md-6">
+          <input
+            type="text"
+            [(ngModel)]="idCardNum"
+            name="idCardNum"
+            class="form-control"
+            placeholder="ID Card"
+          />
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary w-100">Search</button>
+        </div>
+        <div class="col-md-6 d-flex align-items-end">
+          <button type="button" class="btn btn-success w-100" (click)="exportToExcel()">Export Excel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Group ID</th>
+          <th>Device Key</th>
+          <th>ID Card</th>
+          <th>Record ID</th>
+          <th>Time</th>
+          <th>Type</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="filteredVisitors.length === 0">
+          <td colspan="8" class="text-center">Tidak ada data ditemukan.</td>
+        </tr>
+        <tr *ngFor="let visitor of filteredVisitors; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ visitor.group_id }}</td>
+          <td>{{ visitor.device?.device_key || visitor.device_key }}</td>
+          <td>{{ visitor.idcard_num }}</td>
+          <td>{{ visitor.record_id }}</td>
+          <td>{{ visitor.time }}</td>
+          <td>{{ visitor.type }}</td>
+          <td>
+            <img
+              *ngIf="visitor.img_base64"
+              [src]="'data:image/jpeg;base64,' + visitor.img_base64"
+              width="80"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-card>

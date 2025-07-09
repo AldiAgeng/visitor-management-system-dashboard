@@ -70,6 +70,11 @@ const routes: Routes = [
         canActivate: [RoleGuard(['superuser', 'receptionist'])]
       },
       {
+        path: 'visitor-records',
+        loadComponent: () => import('./demo/pages/visitor-record/visitor-record.component').then(c => c.VisitorRecordComponent),
+        canActivate: [RoleGuard(['superuser', 'receptionist'])]
+      },
+      {
         path: 'unauthorized',
         loadComponent: () => import('./demo/pages/unauthorized/unauthorized.component').then(m => m.UnauthorizedComponent)
       }

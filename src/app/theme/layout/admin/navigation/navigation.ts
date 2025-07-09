@@ -65,6 +65,15 @@ export const NavigationItems: NavigationItem[] = [
         classes: 'nav-item',
         icon: 'feather icon-user',
         allowedRoles: ['superuser', 'receptionist']
+      },
+      {
+        id: 'visitor-records',
+        title: 'Visitor Records',
+        type: 'item',
+        url: '/visitor-records',
+        classes: 'nav-item',
+        icon: 'feather icon-user',
+        allowedRoles: ['superuser', 'receptionist']
       }
     ]
   }
