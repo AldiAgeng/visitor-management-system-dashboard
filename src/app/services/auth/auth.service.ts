@@ -8,6 +8,7 @@ export class AuthService {
 
   constructor() {
     this.token = localStorage.getItem('auth_token');
+    this.role = localStorage.getItem('role');
     this.refreshToken = localStorage.getItem('refresh_token');
   }
 
@@ -31,6 +32,7 @@ export class AuthService {
 
   setRole(role: string) {
     this.role = role;
+    localStorage.setItem('role', role);
   }
 
   getRole(): string | null {
